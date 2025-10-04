@@ -1,0 +1,12 @@
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\bin\Debug\net8.0\ToDoList.ServiceDefaults.deps.json
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\bin\Debug\net8.0\ToDoList.ServiceDefaults.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\bin\Debug\net8.0\ToDoList.ServiceDefaults.pdb
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.csproj.AssemblyReference.cache
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.AssemblyInfoInputs.cache
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.AssemblyInfo.cs
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\refint\ToDoList.ServiceDefaults.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ToDoList.ServiceDefaults.pdb
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.ServiceDefaults\obj\Debug\net8.0\ref\ToDoList.ServiceDefaults.dll
