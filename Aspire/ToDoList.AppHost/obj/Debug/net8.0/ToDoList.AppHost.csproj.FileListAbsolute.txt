@@ -123,3 +123,7 @@ C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\obj\Debug\net8.0\
 C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\obj\Debug\net8.0\ToDoList.AppHost.pdb
 C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\obj\Debug\net8.0\ToDoList.AppHost.genruntimeconfig.cache
 C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\obj\Debug\net8.0\ref\ToDoList.AppHost.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\bin\Debug\net8.0\Sprache.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\bin\Debug\net8.0\Aspire.Hosting.NodeJs.dll
+C:\Users\DavidJacoboCastillo\Documents\Aspire\ToDoList.AppHost\bin\Debug\net8.0\CommunityToolkit.Aspire.Hosting.NodeJS.Extensions.dll
