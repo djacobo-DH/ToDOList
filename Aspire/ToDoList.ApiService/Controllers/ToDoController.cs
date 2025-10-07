@@ -100,5 +100,26 @@ namespace toDoList.ApiService.Controllers
 
             return NoContent();
         }
+        // TEST DATABASE CONNECTION
+        [HttpGet("testdb")]
+        public IActionResult TestDatabase()
+        {
+            try
+            {
+                bool canConnect = _context.Database.CanConnect();
+
+                if (canConnect)
+                    return Ok("✅ Conectado correctamente a la base de datos.");
+                else
+                    return StatusCode(500, "❌ No se pudo conectar a la base de datos.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"❌ Error al conectar con la BD: {ex.Message}");
+            }
+        }
+
     }
+
+    
 }

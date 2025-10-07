@@ -4,52 +4,45 @@ using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Cargar variables de entorno desde .env
+// ✅ 1. Cargar variables de entorno (.env)
 Env.Load();
 
-// Intentar obtener la cadena desde variables de entorno (Aspire / Docker)
-var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+// ✅ 2. Obtener la cadena de conexión
+var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING")
+    ?? builder.Configuration.GetConnectionString("postgresdb")
+    ?? "Host=localhost;Port=5432;Database=postgresdb;Username=postgres;Password=1234";
 
-// Si no existe, intentar usar la definida en appsettings.Development.json
-if (string.IsNullOrEmpty(connectionString))
-{
-    connectionString = builder.Configuration.GetConnectionString("postgresdb");
-}
+Console.WriteLine($"🔗 Cadena de conexión usada: {connectionString}");
 
-// Si aún no existe, usar una cadena por defecto local
-if (string.IsNullOrEmpty(connectionString))
-{
-    connectionString = "Host=localhost;Port=5432;Database=postgresdb;Username=postgres;Password=1234";
-}
-
-Console.WriteLine($"🔗 Cadena de conexión utilizada: {connectionString}");
-
-// --- Integración con Aspire ---
+// ✅ 3. Integración con Aspire (si aplica)
 builder.AddServiceDefaults();
 
-// --- Servicios base ---
+// ✅ 4. Registrar servicios base
 builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
-// --- Conexión a PostgreSQL ---
+// ✅ 5. Configurar DbContext (PostgreSQL)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// --- CORS (para el frontend local) ---
+// ✅ 6. Configurar CORS (Frontend React)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy
+            // Permite tus orígenes locales (React o Vite)
+            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
 var app = builder.Build();
 
-// --- APLICAR MIGRACIONES AUTOMÁTICAMENTE ---
+// ✅ 7. Aplicar migraciones automáticas
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -64,42 +57,23 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+// ✅ 8. Middleware
 app.UseCors("AllowFrontend");
 app.UseExceptionHandler();
+app.UseHttpsRedirection();
+app.UseAuthorization();
 
+// ✅ 9. Configuración de entorno
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
+// ✅ 10. Mapear controladores
 app.MapControllers();
 app.MapDefaultEndpoints();
 
-// --- Endpoint de prueba ---
-app.MapGet("/weatherforecast", () =>
-{
-    string[] summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild",
-        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast(
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+// ✅ 11. Endpoint de prueba opcional
+app.MapGet("/ping", () => Results.Ok(new { message = "🟢 API de ToDoList funcionando correctamente." }));
 
 app.Run();
-
-// --- Record para endpoint de ejemplo ---
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
